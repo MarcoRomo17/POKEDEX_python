@@ -1,43 +1,21 @@
 from app import mongo
+from app.models.super_clase import SuperClass
 
-class Pokemon:
-    collection = mongo.db.pokemons
+class Pokemon(SuperClass): #el parentesis es para heredar
+    def __init__(self):
+        super().__init__("pokemons")#llama a la clase padre, lo iniciamos y ese wey ya espera la collecion
 
-    #creamos metodos estaticos (no modificables)
-    #Decorador
-    @staticmethod
-    def find_all():
-        pokemons = Pokemon.collection.find()
-        #lo anterior, devuelve un tipo cursor. No un arreglo. El cursor es un manejador de objetos
-        #Entonces hay que cambiarlo a lista
+    def create(self, data):
+        raise NotImplementedError("Los pokemones no se pueden crear")
+       
 
-        return list(pokemons) #los hace lista
-    
-    @staticmethod
-    def find_by_id(pokemon_id):
-        pokemon=Pokemon.collection.find_one({
-            "_id":pokemon_id
-        })#las llaves son para hacer el filtro UWU
-        return pokemon #regresamos a un solo cabron
-    
-    @staticmethod
-    def create(data):
-        pokemon= Pokemon.collection.insert_one(data)
-        return pokemon.inserted_id
-    
-    @staticmethod
-    def update(pokemon_id, data):
-        pokemon = Pokemon.collection.update_one({
-            "_id":pokemon_id
-        },{
-            "$set":data
-        })#Filtro e info actualizar
-        return pokemon
-    
-    @staticmethod
-    def delete(pokemon_id):
-        return Pokemon.collection.delete_one({"_id":pokemon_id})
+    def delete(self, object_id):
+        raise NotImplementedError("Los pokemones no se pueden eliminar")
+      
+    def update(self, object_id, data):
+             raise NotImplementedError("Los pokemones no se pueden actualizar")
+       
+       
 
+  
 
-    
-    

@@ -1,43 +1,22 @@
 from app import mongo
+from app.models.super_clase import SuperClass
+class User(SuperClass):
+    def __init__(self):
+        super().__init__("users")#llama a la clase padre, lo iniciamos y ese wey ya espera la collecion
 
-class Users:
-    collection = mongo.db.users
+    def create(self, data):
+        super().create(self, data)
 
-    #creamos metodos estaticos (no modificables)
-    #Decorador
-    @staticmethod
-    def find_all():
-        users = Users.collection.find()
-        #lo anterior, devuelve un tipo cursor. No un arreglo. El cursor es un manejador de objetos
-        #Entonces hay que cambiarlo a lista
+    def find_all(self):
+        raise NotImplementedError("No es necesario traer todos los usuarios")
+    
+    def find_by_id(self, object_id):
+        super().find_by_id(object_id)
+       
+       
 
-        return list(users) #los hace lista
-    
-    @staticmethod
-    def find_by_id(user_id):
-        user=Users.collection.find_one({
-            "_id":user_id
-        })#las llaves son para hacer el filtro UWU
-        return user #regresamos a un solo cabron
-    
-    @staticmethod
-    def create(data):
-        user= Users.collection.insert_one(data)
-        return user.inserted_id
-    
-    @staticmethod
-    def update(user_id, data):
-        user = Users.collection.update_one({
-            "_id":user_id
-        },{
-            "$set":data
-        })#Filtro e info actualizar
-        return user
-    
-    @staticmethod
-    def delete(user_id):
-        return Users.collection.delete_one({"_id":user_id})
-
-
-    
-    
+    def delete(self, object_id):
+        super().delete(self, object_id)
+      
+    def update(self, object_id, data):
+        super().update(self, object_id, data)
