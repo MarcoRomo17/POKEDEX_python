@@ -20,3 +20,7 @@ class User(SuperClass):
       
     def update(self, object_id, data):
         super().update(self, object_id, data)
+
+    def get_by_email_password(self, email, password):
+        user = self.collection.find_one({"email": email, "password":password})
+        return user

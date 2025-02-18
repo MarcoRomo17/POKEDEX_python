@@ -13,7 +13,7 @@ class Pokemon(SuperClass): #el parentesis es para heredar
         raise NotImplementedError("Los pokemones no se pueden eliminar")
       
     def update(self, object_id, data):
-             raise NotImplementedError("Los pokemones no se pueden actualizar")
+         raise NotImplementedError("Los pokemones no se pueden actualizar")
        
        
 
