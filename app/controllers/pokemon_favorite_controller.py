@@ -47,7 +47,19 @@ def delete(pokFav_id):
     pok_fav_model.delete(ObjectId(pokFav_id))
     return jsonify("Usuario eliminado con exito", 200)
 
-@bp.route("/get/", methods=["GET"])
+
+
+#MODIFICAR para que traiga por id
+@bp.route("/get", methods=["GET"])
 def get_ALL_POKES_FAV(user_id):
     pokem= pok_fav_model.find_all()
-    return jsonify(pokem, 200)
+    pokemons_filtered=[]
+
+    for pokemon in pokem:
+        if pokemon.user_id ==user_id:
+            pokemons_filtered.append(pokemon)
+    return jsonify(pokemons_filtered, 200)
+
+
+#TRAER TODOS LOS POKEMONES Y UNO SOLO
+
