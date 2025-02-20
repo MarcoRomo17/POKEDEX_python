@@ -2,7 +2,7 @@ from marshmallow import Schema, fields, ValidationError
 #lambda funcion flecha
 #el validate es para filtros customizados
 class Pokemon_Favorite_Schema(Schema):
-    user_id = fields.Str(
+    user_id = fields.Str(# fields es el que valida
         required=True,
         validate=lambda x:len(x)>0,
         error_messages={

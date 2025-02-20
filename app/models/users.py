@@ -13,8 +13,6 @@ class User(SuperClass):
     def find_by_id(self, object_id):
         super().find_by_id(object_id)
        
-       
-
     def delete(self, object_id):
         super().delete(self, object_id)
       
