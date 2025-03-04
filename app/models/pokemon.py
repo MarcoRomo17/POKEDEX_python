@@ -15,9 +15,7 @@ class Pokemon(SuperClass): #el parentesis es para heredar
     def update(self, object_id, data):
          raise NotImplementedError("Los pokemones no se pueden actualizar")
     
-    def find_all(self):
-        super().find_all()
-       
+
        
 
   

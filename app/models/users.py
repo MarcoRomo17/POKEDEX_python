@@ -4,21 +4,18 @@ class User(SuperClass):
     def __init__(self):
         super().__init__("users")#llama a la clase padre, lo iniciamos y ese wey ya espera la collecion
 
-    def create(self, data):
-        super().create(self, data)
+
 
     def find_all(self):
         raise NotImplementedError("No es necesario traer todos los usuarios")
     
-    def find_by_id(self, object_id):
-        super().find_by_id(object_id)
-       
-    def delete(self, object_id):
-        super().delete(self, object_id)
-      
-    def update(self, object_id, data):
-        super().update(self, object_id, data)
 
-    def get_by_email_password(self, email, password):
-        user = self.collection.find_one({"email": email, "password":password})
+     
+    def get_by_email_password(self, email):
+        print(email, "soy el email recibido")
+        user = self.collection.find_one({"email": email})
+        if not user:
+            return None
+        user["_id"]=str(user["_id"])
+        print("regresare ", user)
         return user

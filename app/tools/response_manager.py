@@ -3,7 +3,7 @@ from flask import jsonify
 #Se van a mandar a llamar cuando se ocupe una respuesta
 class ResponseManager:
     def succes(self, data):
-        if type(data)=="str":
+        if isinstance(data,str):
             data={
                 "message":data
             }
@@ -11,7 +11,7 @@ class ResponseManager:
         return jsonify(data),200 # el numero va afuera
     
     def error(self,data="Invalid request"):
-            if type(data)=="str":
+            if isinstance(data, str):
                 data={
                     "message":data
                 }
@@ -19,7 +19,7 @@ class ResponseManager:
             return jsonify(data),400 # el numero va afuera
     
     def error_server(self,data="SERVER ERROR"):
-            if type(data)=="str":
+            if isinstance(data,str):
                 data={
                     "message":data
                 }
